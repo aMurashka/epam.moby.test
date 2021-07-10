@@ -1,5 +1,7 @@
 package com.epam.moby.testng.driver;
 
+import com.epam.moby.testng.configuration.AddressConfigurator;
+import com.epam.moby.testng.configuration.CapabilitiesConfigurator;
 import com.epam.moby.testng.configuration.ConfigurationReader;
 import com.epam.moby.testng.configuration.EnvironmentType;
 import com.epam.moby.testng.log.Log;
@@ -41,14 +43,20 @@ public class DriverManager {
             Runtime.getRuntime().exec(format("adb -s %s emu kill", ConfigurationReader.getProperties().getUdid()));
             Log.info("Emulator is closed");
         } catch (IOException exception) {
-           Log.error("Error to close emulator", exception);
+            Log.error("Error to close emulator", exception);
         }
+    }
+
+    public static void closeAppium() {
+        AddressConfigurator.stopService();
     }
 
     private static AppiumDriver<MobileElement> initDriver() {
         switch (ENVIRONMENT_TYPE) {
             case LOCAL:
-                driver = new AndroidDriver<>(null);
+                driver = new AndroidDriver<MobileElement>(AddressConfigurator
+                        .getAppiumDriverLocalService(ConfigurationReader.getProperties().getAppiumPort()),
+                        CapabilitiesConfigurator.getLocalCapabilities());
                 break;
             default:
                 throw new IllegalArgumentException(format("Unexpected environment type: %s", ENVIRONMENT_TYPE));
