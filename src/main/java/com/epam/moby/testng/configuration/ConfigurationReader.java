@@ -1,5 +1,8 @@
 package com.epam.moby.testng.configuration;
 
+import com.epam.moby.testng.log.Log;
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -17,9 +20,8 @@ public class ConfigurationReader {
             instance = new ConfigurationReader();
             try (var propertyFile = new FileReader("src/main/resources/test.properties")) {
                 properties.load(propertyFile);
-            } catch (IOException e) {
-                //ToDo
-                //add log
+            } catch (IOException exception) {
+                Log.error("Error to load property file", exception);
             }
         }
         return instance;
@@ -61,7 +63,7 @@ public class ConfigurationReader {
         return properties.getProperty("appium.address");
     }
 
-    public String getAppiumPort() {
-        return properties.getProperty("appium.port");
+    public int getAppiumPort() {
+        return NumberUtils.toInt(properties.getProperty("appium.port"));
     }
 }
