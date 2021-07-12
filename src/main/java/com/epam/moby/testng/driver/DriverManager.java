@@ -54,7 +54,7 @@ public class DriverManager {
     private static AppiumDriver<MobileElement> initDriver() {
         switch (ENVIRONMENT_TYPE) {
             case LOCAL:
-                driver = new AndroidDriver<MobileElement>(AddressConfigurator
+                driver = new AndroidDriver<>(AddressConfigurator
                         .getAppiumDriverLocalService(ConfigurationReader.getProperties().getAppiumPort()),
                         CapabilitiesConfigurator.getLocalCapabilities());
                 break;

@@ -13,7 +13,7 @@ public class Log {
     public static final String MESSAGE_CANNOT_BE_NULL = "Message cannot be null.";
 
     static {
-        URL resource = Log.class.getClassLoader().getResource("log4j.properties");
+        URL resource = Log.class.getClassLoader().getResource("log4j2.properties");
         String absolutePath = Objects.requireNonNull(resource).getPath();
         PropertyConfigurator.configureAndWatch(absolutePath);
     }

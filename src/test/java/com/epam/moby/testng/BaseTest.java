@@ -8,7 +8,7 @@ import org.testng.annotations.AfterMethod;
 public class BaseTest {
 
     @BeforeClass
-    public void createSession(){
+    public static void createSession(){
         DriverManager.getDriver();
     }
 
@@ -18,7 +18,7 @@ public class BaseTest {
     }
 
     @AfterClass
-    public void closeSession(){
+    public static void closeSession(){
         DriverManager.closeDriver();
         DriverManager.closeAppium();
         DriverManager.closeEmulator();
