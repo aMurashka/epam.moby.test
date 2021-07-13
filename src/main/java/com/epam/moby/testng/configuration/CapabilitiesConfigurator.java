@@ -19,7 +19,7 @@ public class CapabilitiesConfigurator {
         capability.setCapability(AVD, ConfigurationReader.getProperties().getLocalDeviceName());
         capability.setCapability(APP_PACKAGE, ConfigurationReader.getProperties().getAppPackage());
         capability.setCapability(APP_ACTIVITY, ConfigurationReader.getProperties().getAppActivity());
-        capability.setCapability(APP, new File(ConfigurationReader.getProperties().getAppPath()));
+        capability.setCapability(APP, new File(ConfigurationReader.getProperties().getAppPath()).getAbsolutePath());
         return capability;
     }
 }

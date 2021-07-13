@@ -15,5 +15,4 @@ public class SingPage extends BasePage {
         loginButton.click();
         return new AccessPage();
     }
-
 }

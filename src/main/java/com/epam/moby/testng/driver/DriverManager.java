@@ -11,6 +11,7 @@ import io.appium.java_client.android.AndroidDriver;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.String.format;
 
@@ -26,7 +27,9 @@ public class DriverManager {
     public static AppiumDriver<MobileElement> getDriver() {
         if (driver == null) {
             driver = initDriver();
+            driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         }
+
         return driver;
     }
 

@@ -5,7 +5,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class AccessPage extends BasePage {
 
-    @AndroidFindBy(id = "zocial-epam.com")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc=\"Sign in with EPAM EPAM\"]")
     private MobileElement singWithEpamButton;
 
     public LoginPage clickSingWithEpamButton() {

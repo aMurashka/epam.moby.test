@@ -5,25 +5,25 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 public class LoginPage extends BasePage {
 
-    @AndroidFindBy(id = "userNameInput")
+    @AndroidFindBy(xpath = "//*[@resource-id='userNameInput']")
     private MobileElement userNameInput;
 
-    @AndroidFindBy(id = "passwordInput")
+    @AndroidFindBy(xpath = "//*[@resource-id='passwordInput']")
     private MobileElement passwordInput;
 
-    @AndroidFindBy(id = "submitButton")
+    @AndroidFindBy(xpath = "//*[@resource-id='submitButton']")
     private MobileElement submitButton;
 
-    @AndroidFindBy(id = "errorText")
+    @AndroidFindBy(xpath = "//*[@resource-id='errorText']")
     private MobileElement errorMessageText;
 
     public LoginPage inputUserName(String name) {
-        userNameInput.setValue(name);
+        userNameInput.sendKeys(name);
         return this;
     }
 
     public LoginPage inputPassword(String password) {
-        passwordInput.setValue(password);
+        passwordInput.sendKeys(password);
         return this;
     }
 
@@ -33,6 +33,6 @@ public class LoginPage extends BasePage {
     }
 
     public String getErrorMessageText() {
-        return errorMessageText.getText();
+        return errorMessageText.getAttribute("content-desc");
     }
 }
